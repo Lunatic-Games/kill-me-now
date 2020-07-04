@@ -1,9 +1,6 @@
 extends KinematicBody2D
 
-export(Texture) var SOUL_TEXTURE
-export(Texture) var body_texture
 
-var soul_mode = false
 var mode_changed = false
 
 var motion = Vector2()
@@ -20,9 +17,9 @@ const GRAVITY_CAP = 800
 const UP_DIRECTION = Vector2(0,-1)
 
 func _physics_process(delta):
-	if !soul_mode:
+	if has_node("Soul"):
 		if Input.is_action_just_pressed("action_soul_mode") && is_on_floor():
-			toggle_soul_mode()
+			release_soul()
 			return
 		if !is_on_floor():
 			if motion.y < GRAVITY_CAP:
@@ -50,44 +47,18 @@ func _physics_process(delta):
 			remaining_jumps = NUM_JUMPS
 		move_and_slide(motion, UP_DIRECTION)
 
-	if soul_mode:
-		# TODO Soul gravity
-		if Input.is_action_just_pressed("action_soul_mode"):
-			toggle_soul_mode()
-			return
-		if Input.is_action_just_pressed("ui_right"):
-			motion.x += SOUL_SPEED
-			mode_changed = false
-			face_direction("right")
-		if Input.is_action_just_pressed("ui_left"):
-			motion.x -= SOUL_SPEED
-			mode_changed = false
-			face_direction("left")
-		if Input.is_action_just_pressed("ui_up"):
-			motion.y -= SOUL_SPEED
-			mode_changed = false
-		if Input.is_action_just_pressed("ui_down"):
-			motion.y += SOUL_SPEED
-			mode_changed = false
-		if Input.is_action_just_released("ui_right") && !mode_changed:
-			motion.x -= SOUL_SPEED
-		if Input.is_action_just_released("ui_left") && !mode_changed:
-			motion.x += SOUL_SPEED
-		if Input.is_action_just_released("ui_up") && !mode_changed:
-			motion.y += SOUL_SPEED
-		if Input.is_action_just_released("ui_down") && !mode_changed:
-			motion.y -= SOUL_SPEED
-		move_and_slide(motion)
 
-func toggle_soul_mode():
-	soul_mode = !soul_mode
-	mode_changed = true
+func release_soul():
 	motion = Vector2()
-	if soul_mode:
-		print("Entered soul mode")
-	if !soul_mode:
-		print("Left soul mode")
-		
+	var soul = get_node("Soul")
+	var pos = soul.global_position
+	remove_child(soul)
+	get_parent().add_child(soul)
+	soul.global_position = pos
+	soul.free = true
+	soul.velocity = Vector2(2000, 0)
+
+
 func face_direction(direction):
 	if direction == "right":
 		if !facing_right:
