@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
 var motion = Vector2()
-const SPEED = 150
-const JUMP_SPEED = 200
-const GRAVITY_RATE = 5
+var remaining_jumps = 0
+const SPEED = 175
+const JUMP_SPEED = 250
+const NUM_JUMPS = 1
+const GRAVITY_RATE = 8
 const GRAVITY_CAP = 800
+const UP_DIRECTION = Vector2(0,-1)
 
 func _physics_process(delta):
 	if motion.y < GRAVITY_CAP:
@@ -19,7 +22,12 @@ func _physics_process(delta):
 		motion.x -= SPEED # TODO Accelerate to speed
 	if Input.is_action_just_released("ui_left"):
 		motion.x += SPEED # TODO Accelerate to speed
-	if Input.is_action_just_pressed("jump_action"):
+	if Input.is_action_just_pressed("jump_action") && !is_on_ceiling() && remaining_jumps > 0:
 		motion.y = -JUMP_SPEED
-	move_and_slide(motion)
+		remaining_jumps -= 1
+	if is_on_ceiling():
+		motion.y = 0
+	if is_on_floor():
+		remaining_jumps = NUM_JUMPS
+	move_and_slide(motion, UP_DIRECTION)
 
