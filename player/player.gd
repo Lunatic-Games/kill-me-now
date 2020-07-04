@@ -1,72 +1,77 @@
 extends KinematicBody2D
 
 
-var mode_changed = false
-
-var motion = Vector2()
-var facing_right = true
-const BODY_SPEED = 175
-const SOUL_SPEED = 200
-
-var remaining_jumps = 0
-const JUMP_SPEED = 250
-const NUM_JUMPS = 1
-
-const GRAVITY_RATE = 8
+const SPEED_ACCELERATION = 25
+const SPEED_MAX = 150
+const NUM_JUMPS = 2
+const GRAVITY = 8
 const GRAVITY_CAP = 800
 const UP_DIRECTION = Vector2(0,-1)
+const JUMP_SPEED = 250
+
+var jumps_used = 0
+var velocity = Vector2(0, 0)
+
 
 func _physics_process(delta):
 	if has_node("Soul"):
-		if Input.is_action_just_pressed("action_soul_mode") && is_on_floor():
+		if Input.is_action_just_pressed("release_soul"):
 			release_soul()
 			return
-		if !is_on_floor():
-			if motion.y < GRAVITY_CAP:
-				motion.y += GRAVITY_RATE
-				if motion.y > GRAVITY_CAP:
-					motion.y = GRAVITY_CAP
-		if Input.is_action_just_pressed("ui_right"):
-			motion.x  += BODY_SPEED # TODO Accelerate to speed
-			mode_changed = false
-			face_direction("right")
-		if Input.is_action_just_pressed("ui_left"):
-			motion.x -= BODY_SPEED # TODO Accelerate to speed
-			mode_changed = false
-			face_direction("left")
-		if Input.is_action_just_released("ui_right") && !mode_changed:
-			motion.x -= BODY_SPEED # TODO Accelerate to speed
-		if Input.is_action_just_released("ui_left") && !mode_changed:
-			motion.x += BODY_SPEED # TODO Accelerate to speed
-		if Input.is_action_just_pressed("action_jump") && !is_on_ceiling() && remaining_jumps > 0:
-			motion.y = -JUMP_SPEED
-			remaining_jumps -= 1
-		if is_on_ceiling():
-			motion.y = 1
-		if is_on_floor():
-			remaining_jumps = NUM_JUMPS
-		move_and_slide(motion, UP_DIRECTION)
+		
+		var movement = Vector2(0, 0)
+		if Input.is_action_pressed("move_left"):
+			movement.x -= 1
+			set_direction(-1)
+		if Input.is_action_pressed("move_right"):
+			movement.x += 1
+			set_direction(1)
+		if Input.is_action_just_pressed("jump") and jumps_used < NUM_JUMPS:
+			jumps_used += 1
+			velocity.y = -JUMP_SPEED
+		
+		velocity += movement * SPEED_ACCELERATION
+		velocity.x = clamp(velocity.x, -SPEED_MAX, SPEED_MAX)
+	
+	if is_on_floor():
+		jumps_used = 0
+	else:
+		velocity.y = min(velocity.y + GRAVITY, GRAVITY_CAP)
+	if is_on_ceiling():
+		velocity.y = max(0, velocity.y)
+	velocity = move_and_slide(velocity, UP_DIRECTION)
+	velocity.x = lerp(velocity.x, 0, 0.2)
 
 
 func release_soul():
-	motion = Vector2()
 	var soul = get_node("Soul")
 	var pos = soul.global_position
 	remove_child(soul)
 	get_parent().add_child(soul)
 	soul.global_position = pos
 	soul.free_from_body()
-	soul.velocity = Vector2(300, 0)
+	
+
+func interact():
+	for area in $InteractArea.get_overlapping_areas():
+		if area.is_in_group("interactable") and area.has_method("interact"):
+			area.interact()
 
 
-func face_direction(direction):
-	if direction == "right":
-		if !facing_right:
-			scale.x = -1
-			facing_right = true
-		return
-	if direction == "left":
-		if facing_right:
-			scale.x = -1
-			facing_right = false
-		return
+func set_direction(dir_sign):
+	if has_node("Soul"):
+		get_node("Soul").set_direction(dir_sign)
+	
+	$BodySprite.scale.x = dir_sign * abs($BodySprite.scale.x)
+	$BodyCollisionShape2D.scale.x = dir_sign * abs($BodyCollisionShape2D.scale.x)
+	$ReattachmentArea.scale.x = dir_sign * abs($ReattachmentArea.scale.x)
+
+
+func _on_InteractArea_area_entered(area):
+	if area.is_in_group("interactable") and area.has_method("interact_enter"):
+		area.interact_enter()
+
+
+func _on_InteractArea_area_exited(area):
+	if area.is_in_group("interactable") and area.has_method("interact_exit"):
+		area.interact_exit()

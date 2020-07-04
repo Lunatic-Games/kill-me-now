@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 const SPEED_ACCELERATION = 15
 const SPEED_MAX = 100
+const RELEASE_VELOCITY = 300
 
 var is_free = false
 var can_reattach = false
@@ -24,10 +25,12 @@ func _physics_process(delta):
 		movement.y -= 1
 	if Input.is_action_pressed("move_right"):
 		movement.x += 1
+		set_direction(1)
 	if Input.is_action_pressed("move_down"):
 		movement.y += 1
 	if Input.is_action_pressed("move_left"):
 		movement.x -= 1
+		set_direction(-1)
 	
 	if velocity.length() < SPEED_MAX:
 		velocity += movement * SPEED_ACCELERATION
@@ -39,7 +42,7 @@ func _physics_process(delta):
 func free_from_body():
 	is_free = true
 	$Particles2D.emitting = true
-	$CollisionShape2D.disabled = true
+	velocity.x = sign($Sprite.scale.x) * RELEASE_VELOCITY
 	$ReattachCooldown.start()
 
 
@@ -60,3 +63,9 @@ func _on_AttachmentArea_area_entered(area):
 
 func _on_ReattachCooldown_timeout():
 	can_reattach = true
+
+
+func set_direction(dir_sign):
+	$Sprite.scale.x = dir_sign * abs($Sprite.scale.x)
+	$CollisionShape2D.scale.x = dir_sign * abs($CollisionShape2D.scale.x)
+	$AttachmentArea.scale.x = dir_sign * abs($AttachmentArea.scale.x)
