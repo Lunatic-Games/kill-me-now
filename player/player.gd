@@ -85,10 +85,8 @@ func toggle_soul_mode():
 	motion = Vector2()
 	if soul_mode:
 		print("Entered soul mode")
-		$Sprite.texture = SOUL_TEXTURE
 	if !soul_mode:
 		print("Left soul mode")
-		$Sprite.texture = body_texture
 		
 func face_direction(direction):
 	if direction == "right":
