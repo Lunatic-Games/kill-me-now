@@ -10,7 +10,7 @@ var velocity = Vector2(0, 0)
 
 func _ready():
 	if get_tree().current_scene == self:
-		free = true
+		free_from_body()
 
 
 func _physics_process(delta):
@@ -33,3 +33,8 @@ func _physics_process(delta):
 		velocity = velocity.clamped(SPEED_MAX)
 	velocity = move_and_slide(velocity)
 	velocity = lerp(velocity, Vector2(0, 0), 0.1)
+
+
+func free_from_body():
+	free = true
+	$Particles2D.emitting = true

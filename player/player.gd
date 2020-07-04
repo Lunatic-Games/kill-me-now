@@ -55,7 +55,7 @@ func release_soul():
 	remove_child(soul)
 	get_parent().add_child(soul)
 	soul.global_position = pos
-	soul.free = true
+	soul.free_from_body()
 	soul.velocity = Vector2(300, 0)
 
 

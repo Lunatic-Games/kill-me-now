@@ -6,7 +6,7 @@ func _on_NewGameButton_pressed():
 
 
 func begin_new_game():
-	get_tree().quit()
+	get_tree().change_scene("res://levels/level_test.tscn")
 
 
 func _on_LevelSelectButton_pressed():
