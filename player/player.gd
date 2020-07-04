@@ -56,7 +56,7 @@ func release_soul():
 	get_parent().add_child(soul)
 	soul.global_position = pos
 	soul.free = true
-	soul.velocity = Vector2(2000, 0)
+	soul.velocity = Vector2(300, 0)
 
 
 func face_direction(direction):

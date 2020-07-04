@@ -28,7 +28,8 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		movement.x -= 1
 	
-	velocity += movement * SPEED_ACCELERATION
-	velocity = velocity.clamped(SPEED_MAX)
+	if velocity.length() < SPEED_MAX:
+		velocity += movement * SPEED_ACCELERATION
+		velocity = velocity.clamped(SPEED_MAX)
 	velocity = move_and_slide(velocity)
 	velocity = lerp(velocity, Vector2(0, 0), 0.1)
