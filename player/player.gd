@@ -26,7 +26,7 @@ func _physics_process(delta):
 		motion.y = -JUMP_SPEED
 		remaining_jumps -= 1
 	if is_on_ceiling():
-		motion.y = 0
+		motion.y = 1
 	if is_on_floor():
 		remaining_jumps = NUM_JUMPS
 	move_and_slide(motion, UP_DIRECTION)
