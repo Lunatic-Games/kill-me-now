@@ -42,6 +42,7 @@ func _physics_process(delta):
 
 func toggle_soul_mode():
 	soul_mode = !soul_mode
+	motion = Vector2()
 	if soul_mode:
 		print("Entered soul mode")
 	if !soul_mode:
