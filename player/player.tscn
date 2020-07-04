@@ -4,11 +4,7 @@
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-<<<<<<< HEAD
-extents = Vector2( 16, 16 )
-=======
 extents = Vector2( 5, 12 )
->>>>>>> 6146cc227dc51c03a67c0df0b26aa5e8903013e4
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 3
