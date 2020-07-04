@@ -1,9 +1,13 @@
 extends KinematicBody2D
 
+export(Texture) var SOUL_TEXTURE
+export(Texture) var body_texture
+
 var soul_mode = false
 var mode_changed = false
 
 var motion = Vector2()
+var facing_right = true
 const BODY_SPEED = 175
 const SOUL_SPEED = 200
 
@@ -25,12 +29,14 @@ func _physics_process(delta):
 				motion.y += GRAVITY_RATE
 				if motion.y > GRAVITY_CAP:
 					motion.y = GRAVITY_CAP
-		if Input.is_action_just_pressed("ui_right"):	
+		if Input.is_action_just_pressed("ui_right"):
 			motion.x  += BODY_SPEED # TODO Accelerate to speed
 			mode_changed = false
+			face_direction("right")
 		if Input.is_action_just_pressed("ui_left"):
 			motion.x -= BODY_SPEED # TODO Accelerate to speed
 			mode_changed = false
+			face_direction("left")
 		if Input.is_action_just_released("ui_right") && !mode_changed:
 			motion.x -= BODY_SPEED # TODO Accelerate to speed
 		if Input.is_action_just_released("ui_left") && !mode_changed:
@@ -45,15 +51,18 @@ func _physics_process(delta):
 		move_and_slide(motion, UP_DIRECTION)
 
 	if soul_mode:
+		# TODO Soul gravity
 		if Input.is_action_just_pressed("action_soul_mode"):
 			toggle_soul_mode()
 			return
 		if Input.is_action_just_pressed("ui_right"):
 			motion.x += SOUL_SPEED
 			mode_changed = false
+			face_direction("right")
 		if Input.is_action_just_pressed("ui_left"):
 			motion.x -= SOUL_SPEED
 			mode_changed = false
+			face_direction("left")
 		if Input.is_action_just_pressed("ui_up"):
 			motion.y -= SOUL_SPEED
 			mode_changed = false
@@ -76,5 +85,19 @@ func toggle_soul_mode():
 	motion = Vector2()
 	if soul_mode:
 		print("Entered soul mode")
+		$Sprite.texture = SOUL_TEXTURE
 	if !soul_mode:
 		print("Left soul mode")
+		$Sprite.texture = body_texture
+		
+func face_direction(direction):
+	if direction == "right":
+		if !facing_right:
+			scale.x = -1
+			facing_right = true
+		return
+	if direction == "left":
+		if facing_right:
+			scale.x = -1
+			facing_right = false
+		return
