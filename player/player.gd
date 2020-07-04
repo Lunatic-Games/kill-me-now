@@ -19,6 +19,9 @@ func _physics_process(delta):
 			release_soul()
 			return
 		
+		if Input.is_action_just_pressed("interact"):
+			interact()
+		
 		var movement = Vector2(0, 0)
 		if Input.is_action_pressed("move_left"):
 			movement.x -= 1
@@ -32,6 +35,7 @@ func _physics_process(delta):
 		
 		velocity += movement * SPEED_ACCELERATION
 		velocity.x = clamp(velocity.x, -SPEED_MAX, SPEED_MAX)
+
 	
 	if is_on_floor():
 		jumps_used = 0
@@ -54,8 +58,8 @@ func release_soul():
 
 func interact():
 	for area in $InteractArea.get_overlapping_areas():
-		if area.is_in_group("interactable") and area.has_method("interact"):
-			area.interact()
+		if area.is_in_group("interactable") and area.get_parent().has_method("interact"):
+			area.get_parent().interact()
 
 
 func set_direction(dir_sign):
@@ -68,10 +72,10 @@ func set_direction(dir_sign):
 
 
 func _on_InteractArea_area_entered(area):
-	if area.is_in_group("interactable") and area.has_method("interact_enter"):
-		area.interact_enter()
+	if area.is_in_group("interactable") and area.get_parent().has_method("interact_enter"):
+		area.get_parent().interact_enter()
 
 
 func _on_InteractArea_area_exited(area):
-	if area.is_in_group("interactable") and area.has_method("interact_exit"):
-		area.interact_exit()
+	if area.is_in_group("interactable") and area.get_parent().has_method("interact_exit"):
+		area.get_parent().interact_exit()

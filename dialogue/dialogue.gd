@@ -7,7 +7,7 @@ const DEFAULT_DIALOGUE = ["THIS NPC HAS NO DIALOGUE"]
 
 func _ready():
 	visible = false
-	if content.empty():
+	if !content:
 		content = DEFAULT_DIALOGUE
 
 func _make_active():
