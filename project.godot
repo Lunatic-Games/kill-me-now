@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Kill Me Now"
+run/main_scene="res://levels/level_test.tscn"
 config/icon="res://icon.png"
 
 [display]

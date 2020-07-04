@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 
 [node name="LevelTest" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 49.1369, 526.647 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
