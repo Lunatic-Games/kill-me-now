@@ -13,7 +13,7 @@ position = Vector2( 49.1369, 526.647 )
 [node name="NPC" parent="." instance=ExtResource( 3 )]
 position = Vector2( 272.343, 526.789 )
 z_index = -1
-dialogue = [ "Page 1", "Page 2" ]
+dialogue = [ "Wow you found me!", "I wonder how big these texts can get...", "Oh well, I guess we'll never know!!" ]
 npc_texture = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
