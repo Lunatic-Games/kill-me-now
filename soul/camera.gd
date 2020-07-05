@@ -16,10 +16,8 @@ func _physics_process(delta):
 		var horizontal = size.x > size.y
 		if horizontal:
 			if pos.y < global_position.y:
-				print("top")
 				limit_top = max(pos.y + size.y / 2, limit_top)
 			else:
-				print("bottom")
 				limit_bottom = min(pos.y - size.y / 2, limit_bottom)
 		else:
 			if pos.x > global_position.x:
