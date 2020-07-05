@@ -53,7 +53,7 @@ func attach_to_body(body):
 	get_parent().remove_child(self)
 	body.add_child(self)
 	body.move_child(self, 0)
-	body.set_direction(sign($Sprite.scale.x))
+	body.soul_entered()
 	position = body.get_node("AttachmentPoint").position
 
 

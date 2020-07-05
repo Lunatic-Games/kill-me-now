@@ -44,6 +44,7 @@ z_index = -1
 
 [node name="Gate" parent="." instance=ExtResource( 7 )]
 position = Vector2( 560, 512 )
+rotation = 1.5708
 script = SubResource( 1 )
 
 [node name="NPC" parent="." instance=ExtResource( 3 )]

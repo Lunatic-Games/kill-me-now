@@ -32,7 +32,10 @@ func _flip_page():
 		feed = content[page]
 	else:
 		if feed.empty():
-			_make_inactive()
+			if visible:
+				_make_inactive()
+			else:
+				_make_active()
 		else:
 			text += feed
 			feed = ""

@@ -17,6 +17,9 @@ func interact_enter():
 func interact():
 	if showing_text:
 		$Dialogue._flip_page()
+	else:
+		$Dialogue._make_active()
+		showing_text = true
 	
 func interact_exit():
 	if showing_text:
