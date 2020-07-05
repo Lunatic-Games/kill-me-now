@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://soul/soul.png" type="Texture" id=1]
 [ext_resource path="res://soul/soul.gd" type="Script" id=2]
 [ext_resource path="res://soul/soul_particle.png" type="Texture" id=3]
+[ext_resource path="res://soul/camera.gd" type="Script" id=4]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.584314, 0.768627, 0.784314, 0.666667, 1, 1, 1, 0 )
@@ -40,8 +41,11 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8, 9 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 512, 288 )
+
 [node name="Soul" type="KinematicBody2D"]
-position = Vector2( 476, 284 )
+position = Vector2( 512, 288 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
@@ -77,5 +81,14 @@ shape = SubResource( 6 )
 [node name="ReattachCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+shape = SubResource( 7 )
 [connection signal="area_entered" from="AttachmentArea" to="." method="_on_AttachmentArea_area_entered"]
 [connection signal="timeout" from="ReattachCooldown" to="." method="_on_ReattachCooldown_timeout"]

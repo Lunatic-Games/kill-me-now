@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://body/body.tscn" type="PackedScene" id=2]
@@ -32,6 +32,12 @@ func _on_PressurePlate_toggled(on):
 	else:
 		close()
 "
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 544, 16 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 48, 320 )
 
 [node name="LevelTest" type="Node2D"]
 
@@ -75,7 +81,6 @@ position = Vector2( 720, 528 )
 
 [node name="ElectricRail" parent="." instance=ExtResource( 13 )]
 position = Vector2( 608, 528 )
-on = false
 
 [node name="NPC" parent="." instance=ExtResource( 3 )]
 position = Vector2( 272.343, 526.789 )
@@ -88,7 +93,7 @@ dialogue = [ "Hey, good job getting up here!", "Im kinda stuck..." ]
 npc_texture = ExtResource( 4 )
 
 [node name="Body" parent="." instance=ExtResource( 2 )]
-position = Vector2( 114, 520 )
+position = Vector2( 256, 320 )
 z_index = 1
 z_as_relative = false
 
@@ -98,5 +103,55 @@ z_as_relative = false
 
 [node name="Body2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 593, 424 )
+
+[node name="CameraBoundaries" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="CameraBoundaries" groups=[
+"camera_boundry",
+]]
+position = Vector2( 520, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D"]
+shape = SubResource( 2 )
+
+[node name="Area2D4" type="Area2D" parent="CameraBoundaries" groups=[
+"camera_boundry",
+]]
+position = Vector2( 512, 592 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D4"]
+shape = SubResource( 2 )
+
+[node name="Area2D3" type="Area2D" parent="CameraBoundaries" groups=[
+"camera_boundry",
+]]
+position = Vector2( 1464, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D3"]
+shape = SubResource( 2 )
+
+[node name="Area2D5" type="Area2D" parent="CameraBoundaries" groups=[
+"camera_boundry",
+]]
+position = Vector2( 1536, 192 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D5"]
+shape = SubResource( 2 )
+
+[node name="Area2D2" type="Area2D" parent="CameraBoundaries" groups=[
+"camera_boundry",
+]]
+position = Vector2( -32, 304 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D2"]
+shape = SubResource( 3 )
+
+[node name="Area2D6" type="Area2D" parent="CameraBoundaries" groups=[
+"camera_boundry",
+]]
+position = Vector2( 1040, -112 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D6"]
+shape = SubResource( 3 )
 [connection signal="pulled" from="Lever" to="Gate" method="_on_Lever_pulled"]
 [connection signal="toggled" from="PressurePlate" to="Gate" method="_on_PressurePlate_toggled"]

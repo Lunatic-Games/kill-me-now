@@ -13,6 +13,7 @@ var velocity = Vector2(0, 0)
 func _ready():
 	if get_tree().current_scene == self:
 		free_from_body()
+		$Camera2D.current = false
 
 
 func _physics_process(delta):
