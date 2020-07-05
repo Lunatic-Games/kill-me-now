@@ -3,6 +3,7 @@ extends Node2D
 
 export (PackedScene) var next_level
 
+
 func _ready():
 	for body in get_tree().get_nodes_in_group("body"):
 		body.connect("soul_died", self, "_on_Body_soul_died")
