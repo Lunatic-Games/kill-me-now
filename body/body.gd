@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 
+signal soul_died
+
 const SPEED_ACCELERATION = 25
 const SPEED_MAX = 150
 const NUM_JUMPS = 2
@@ -10,6 +12,7 @@ const UP_DIRECTION = Vector2(0,-1)
 const JUMP_SPEED = 250
 
 var jumps_used = 0
+var dead = false
 var velocity = Vector2(0, 0)
 
 
@@ -62,9 +65,22 @@ func _physics_process(delta):
 
 
 func release_soul():
-	if !has_node("Soul"):
+	if !has_node("Soul") or dead:
 		return
 	call_deferred("remove_soul_child")
+
+
+func kill():
+	if has_node("Soul"):
+		emit_signal("soul_died")
+	dead = true
+	var particles = $Particles2D
+	var pos = particles.global_position
+	remove_child(particles)
+	get_parent().add_child(particles)
+	particles.global_position = pos
+	particles.emitting = true
+	queue_free()
 
 
 func remove_soul_child():

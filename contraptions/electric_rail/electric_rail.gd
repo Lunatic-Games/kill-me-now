@@ -23,4 +23,4 @@ func turn_off():
 
 func _on_ElectricRail_area_entered(area):
 	if area.name == "Feet" and on:
-		area.get_parent().release_soul()
+		area.get_parent().kill()
