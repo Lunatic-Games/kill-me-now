@@ -62,6 +62,8 @@ func _physics_process(delta):
 
 
 func release_soul():
+	if !has_node("Soul"):
+		return
 	var soul = get_node("Soul")
 	var pos = soul.global_position
 	remove_child(soul)

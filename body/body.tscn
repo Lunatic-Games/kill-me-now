@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://body/body.gd" type="Script" id=2]
 [ext_resource path="res://body/body.png" type="Texture" id=3]
@@ -78,7 +78,12 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 0, 48, 48 ), Rect2( 144, 0, 48, 48 ), Rect2( 192, 0, 48, 48 ), Rect2( 144, 0, 48, 48 ), Rect2( 0, 0, 48, 48 ), Rect2( 144, 0, 48, 48 ), Rect2( 240, 0, 48, 48 ), Rect2( 144, 0, 48, 48 ) ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 5, 2 )
+
+[node name="Body" type="KinematicBody2D" groups=[
+"body",
+]]
 collision_layer = 0
 script = ExtResource( 2 )
 __meta__ = {
@@ -117,5 +122,11 @@ anims/die = SubResource( 7 )
 anims/falling = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/moving = SubResource( 6 )
+
+[node name="Feet" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feet"]
+position = Vector2( -1, 22 )
+shape = SubResource( 8 )
 [connection signal="area_entered" from="InteractArea" to="." method="_on_InteractArea_area_entered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_InteractArea_area_exited"]
