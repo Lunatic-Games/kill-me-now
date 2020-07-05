@@ -15,7 +15,7 @@ var velocity = Vector2(0, 0)
 
 func _physics_process(delta):
 	if has_node("Soul"):
-		if Input.is_action_just_pressed("release_soul"):
+		if Input.is_action_just_pressed("move_down"):
 			release_soul()
 			return
 		
@@ -29,7 +29,8 @@ func _physics_process(delta):
 		if Input.is_action_pressed("move_right"):
 			movement.x += 1
 			set_direction(1)
-		if Input.is_action_just_pressed("jump") and jumps_used < NUM_JUMPS:
+		if (Input.is_action_just_pressed("jump") or 
+				Input.is_action_just_pressed("move_up") and jumps_used < NUM_JUMPS):
 			jumps_used += 1
 			velocity.y = -JUMP_SPEED
 		

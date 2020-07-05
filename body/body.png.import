@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lever.png-5b667d7a7f658a4b3d6a66733d903c59.stex"
+path="res://.import/body.png-86dc610c2a42fedc6b06bde28c50cb65.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lever/lever.png"
-dest_files=[ "res://.import/lever.png-5b667d7a7f658a4b3d6a66733d903c59.stex" ]
+source_file="res://body/body.png"
+dest_files=[ "res://.import/body.png-86dc610c2a42fedc6b06bde28c50cb65.stex" ]
 
 [params]
 

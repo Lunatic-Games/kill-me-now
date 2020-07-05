@@ -10,7 +10,6 @@ func _ready():
 	$Dialogue.content = dialogue
 
 func interact_enter():
-	print("Entered NPC area")
 	if !showing_text:
 		$Dialogue._make_active()
 		showing_text = true
@@ -20,7 +19,6 @@ func interact():
 		$Dialogue._flip_page()
 	
 func interact_exit():
-	print("Exited NPC area")
 	if showing_text:
 		$Dialogue._make_inactive()
 		showing_text = false

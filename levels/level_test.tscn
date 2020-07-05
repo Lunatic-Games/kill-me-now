@@ -1,26 +1,28 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://body/body.tscn" type="PackedScene" id=2]
 [ext_resource path="res://npc/npc.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
-[ext_resource path="res://lever/lever.tscn" type="PackedScene" id=5]
+[ext_resource path="res://contraptions/lever/lever.tscn" type="PackedScene" id=5]
+[ext_resource path="res://soul/soul.tscn" type="PackedScene" id=6]
+[ext_resource path="res://contraptions/gate/gate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://contraptions/soul_fence/soul_fence.tscn" type="PackedScene" id=8]
+[ext_resource path="res://contraptions/fence/fence.tscn" type="PackedScene" id=9]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://contraptions/gate/gate.gd\"
+
+
+
+func _on_Lever_pulled(on):
+	if on:
+		open()
+	else:
+		close()
+"
 
 [node name="LevelTest" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 49.1369, 526.647 )
-
-[node name="NPC" parent="." instance=ExtResource( 3 )]
-position = Vector2( 272.343, 526.789 )
-z_index = -1
-dialogue = [ "Wow you found me!", "I wonder how big these texts can get...", "Oh well, I guess we'll never know!!" ]
-npc_texture = ExtResource( 4 )
-
-[node name="NPC2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 300.887, 337.969 )
-dialogue = [ "Hey, good job getting up here!", "Im kinda stuck..." ]
-npc_texture = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -30,6 +32,45 @@ collision_mask = 3
 format = 1
 tile_data = PoolIntArray( 65535, 0, 65537, 0, 0, 131072, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 3, 5, 0, 3, 6, 0, 3, 7, 0, 3, 8, 0, 3, 9, 0, 3, 10, 0, 3, 11, 0, 3, 12, 0, 3, 13, 0, 3, 14, 0, 3, 15, 0, 3, 16, 0, 3, 17, 0, 3, 18, 0, 3, 19, 0, 3, 20, 0, 3, 21, 0, 3, 22, 0, 3, 23, 0, 3, 24, 0, 3, 25, 0, 3, 26, 0, 3, 27, 0, 3, 28, 0, 3, 29, 0, 3, 30, 0, 3, 31, 0, 131073, 32, 0, 65538, 131071, 0, 196608, 65536, 0, 327681, 65567, 0, 196608, 65568, 0, 327681, 196607, 0, 196608, 131072, 0, 327681, 131103, 0, 196608, 131104, 0, 327681, 262143, 0, 196608, 196608, 0, 327681, 196639, 0, 196608, 196640, 0, 327681, 327679, 0, 196608, 262144, 0, 327681, 262175, 0, 196608, 262176, 0, 327681, 393215, 0, 196608, 327680, 0, 327681, 327711, 0, 196608, 327712, 0, 327681, 458751, 0, 196608, 393216, 0, 327681, 393247, 0, 196608, 393248, 0, 327681, 524287, 0, 196608, 458752, 0, 327681, 458776, 0, 65537, 458777, 0, 65538, 458783, 0, 196608, 458784, 0, 327681, 589823, 0, 196608, 524288, 0, 327681, 524312, 0, 196608, 524313, 0, 327681, 524319, 0, 196608, 524320, 0, 327681, 655359, 0, 196608, 589824, 0, 327681, 589848, 0, 196611, 589849, 0, 262144, 589855, 0, 196608, 589856, 0, 327681, 720895, 0, 196608, 655360, 0, 327681, 655391, 0, 196608, 655392, 0, 327681, 786431, 0, 196608, 720896, 0, 327681, 720904, 0, 1, 720905, 0, 3, 720906, 0, 3, 720907, 0, 3, 720908, 0, 3, 720909, 0, 2, 720927, 0, 196608, 720928, 0, 327681, 851967, 0, 196608, 786432, 0, 327681, 786463, 0, 196608, 786464, 0, 327681, 917503, 0, 196608, 851968, 0, 327681, 851999, 0, 196608, 852000, 0, 327681, 983039, 0, 196608, 917504, 0, 327681, 917521, 0, 1, 917522, 0, 3, 917523, 0, 3, 917524, 0, 3, 917525, 0, 2, 917535, 0, 196608, 917536, 0, 327681, 1048575, 0, 196608, 983040, 0, 327681, 983071, 0, 196608, 983072, 0, 327681, 1114111, 0, 196608, 1048576, 0, 327681, 1048607, 0, 196608, 1048608, 0, 327681, 1179647, 0, 196608, 1114112, 0, 327682, 1114113, 0, 65536, 1114114, 0, 65536, 1114115, 0, 65536, 1114116, 0, 65536, 1114117, 0, 65536, 1114118, 0, 65536, 1114119, 0, 65536, 1114120, 0, 65536, 1114121, 0, 65536, 1114122, 0, 65536, 1114123, 0, 65536, 1114124, 0, 65536, 1114125, 0, 65536, 1114126, 0, 65536, 1114127, 0, 65536, 1114128, 0, 65536, 1114129, 0, 65536, 1114130, 0, 65536, 1114131, 0, 65536, 1114132, 0, 65536, 1114133, 0, 65536, 1114134, 0, 65536, 1114135, 0, 65536, 1114136, 0, 65536, 1114137, 0, 65536, 1114138, 0, 65536, 1114139, 0, 65536, 1114140, 0, 65536, 1114141, 0, 65536, 1114142, 0, 65536, 1114143, 0, 327683, 1114144, 0, 327681, 1245183, 0, 196611, 1179648, 0, 262146, 1179649, 0, 262146, 1179650, 0, 262146, 1179651, 0, 262146, 1179652, 0, 262146, 1179653, 0, 262146, 1179654, 0, 262146, 1179655, 0, 262146, 1179656, 0, 262146, 1179657, 0, 262146, 1179658, 0, 262146, 1179659, 0, 262146, 1179660, 0, 262146, 1179661, 0, 262146, 1179662, 0, 262146, 1179663, 0, 262146, 1179664, 0, 262146, 1179665, 0, 262146, 1179666, 0, 262146, 1179667, 0, 262146, 1179668, 0, 262146, 1179669, 0, 262146, 1179670, 0, 262146, 1179671, 0, 262146, 1179672, 0, 262146, 1179673, 0, 262146, 1179674, 0, 262146, 1179675, 0, 262146, 1179676, 0, 262146, 1179677, 0, 262146, 1179678, 0, 262146, 1179679, 0, 262146, 1179680, 0, 262144 )
 
+[node name="SoulFence" parent="." instance=ExtResource( 8 )]
+position = Vector2( 688, 432 )
+
+[node name="SoulFence2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 688, 400 )
+
 [node name="Lever" parent="." instance=ExtResource( 5 )]
-position = Vector2( 443, 521 )
+position = Vector2( 432, 528 )
 z_index = -1
+
+[node name="Gate" parent="." instance=ExtResource( 7 )]
+position = Vector2( 560, 512 )
+script = SubResource( 1 )
+
+[node name="NPC" parent="." instance=ExtResource( 3 )]
+position = Vector2( 272.343, 526.789 )
+dialogue = [ "Wow you found me!", "I wonder how big these texts can get...", "Oh well, I guess we'll never know!!" ]
+npc_texture = ExtResource( 4 )
+
+[node name="NPC2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 300.887, 337.969 )
+dialogue = [ "Hey, good job getting up here!", "Im kinda stuck..." ]
+npc_texture = ExtResource( 4 )
+
+[node name="Body" parent="." instance=ExtResource( 2 )]
+position = Vector2( 114, 520 )
+z_index = 1
+z_as_relative = false
+
+[node name="Soul" parent="Body" instance=ExtResource( 6 )]
+position = Vector2( 0, 4 )
+z_as_relative = false
+
+[node name="Body2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 593, 424 )
+
+[node name="Fence" parent="." instance=ExtResource( 9 )]
+position = Vector2( 688, 528 )
+
+[node name="Fence2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 688, 496 )
+[connection signal="pulled" from="Lever" to="Gate" method="_on_Lever_pulled"]
