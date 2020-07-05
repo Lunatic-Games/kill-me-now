@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://body/body.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://contraptions/pressure_plate/pressure_plate.tscn" type="PackedScene" id=11]
 [ext_resource path="res://contraptions/spikes/spikes.tscn" type="PackedScene" id=12]
 [ext_resource path="res://contraptions/electric_rail/electric_rail.tscn" type="PackedScene" id=13]
+[ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=14]
+[ext_resource path="res://levels/level.gd" type="Script" id=15]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/gate/gate.gd\"
@@ -40,6 +42,7 @@ extents = Vector2( 544, 16 )
 extents = Vector2( 48, 320 )
 
 [node name="LevelTest" type="Node2D"]
+script = ExtResource( 15 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -153,5 +156,11 @@ position = Vector2( 1040, -112 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBoundaries/Area2D6"]
 shape = SubResource( 3 )
+
+[node name="PauseMenu" parent="." instance=ExtResource( 14 )]
+margin_left = 504.0
+margin_top = 280.0
+margin_right = 504.0
+margin_bottom = 280.0
 [connection signal="pulled" from="Lever" to="Gate" method="_on_Lever_pulled"]
 [connection signal="toggled" from="PressurePlate" to="Gate" method="_on_PressurePlate_toggled"]
