@@ -16,6 +16,11 @@ z_index = -1
 dialogue = [ "Wow you found me!", "I wonder how big these texts can get...", "Oh well, I guess we'll never know!!" ]
 npc_texture = ExtResource( 4 )
 
+[node name="NPC2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 300.887, 337.969 )
+dialogue = [ "Hey, good job getting up here!", "Im kinda stuck..." ]
+npc_texture = ExtResource( 4 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
