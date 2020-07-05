@@ -16,4 +16,4 @@ func _physics_process(delta):
 		if collision.normal == Vector2(0, -1) and prev_y_vel > 10:
 			var hit = collision.collider
 			if hit.is_in_group("body"):
-				hit.release_soul()
+				hit.kill()

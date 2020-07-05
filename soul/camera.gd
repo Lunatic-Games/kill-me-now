@@ -2,6 +2,10 @@ extends Camera2D
 
 
 func _physics_process(delta):
+	var soul = get_tree().get_nodes_in_group("soul")
+	if !soul:
+		return
+	global_position = soul[0].global_position
 	limit_top = -100000
 	limit_right = 100000
 	limit_bottom = 100000
