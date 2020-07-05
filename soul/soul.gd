@@ -16,7 +16,7 @@ func _ready():
 		$Camera2D.current = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !is_free:
 		return
 	

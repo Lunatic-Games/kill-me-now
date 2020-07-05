@@ -1,11 +1,14 @@
 extends Camera2D
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var soul = get_tree().get_nodes_in_group("soul")
 	if !soul:
 		return
-	global_position = soul[0].global_position
+	if soul[0].is_free:
+		global_position = soul[0].global_position
+	else:
+		global_position = soul[0].get_parent().global_position + Vector2(0, 4)
 	limit_top = -100000
 	limit_right = 100000
 	limit_bottom = 100000
@@ -20,11 +23,11 @@ func _physics_process(delta):
 		var horizontal = size.x > size.y
 		if horizontal:
 			if pos.y < global_position.y:
-				limit_top = max(pos.y + size.y / 2, limit_top)
+				limit_top = max(pos.y + size.y / 2, limit_top) as int
 			else:
-				limit_bottom = min(pos.y - size.y / 2, limit_bottom)
+				limit_bottom = min(pos.y - size.y / 2, limit_bottom) as int
 		else:
 			if pos.x > global_position.x:
-				limit_right = min(pos.x - size.x / 2, limit_right)
+				limit_right = min(pos.x - size.x / 2, limit_right) as int
 			else:
-				limit_left = max(pos.x + size.x / 2, limit_left)
+				limit_left = max(pos.x + size.x / 2, limit_left) as int

@@ -21,7 +21,7 @@ func _ready():
 		$AnimationPlayer.play("die")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if has_node("Soul"):
 		if Input.is_action_just_pressed("move_down"):
 			release_soul()
@@ -48,6 +48,8 @@ func _physics_process(delta):
 		
 		velocity += movement * SPEED_ACCELERATION
 		velocity.x = clamp(velocity.x, -SPEED_MAX, SPEED_MAX)
+	
+		$Soul.position = $HeadPosition.position
 
 	
 	if is_on_floor():
@@ -71,6 +73,8 @@ func release_soul():
 
 
 func kill():
+	if dead:
+		return
 	if has_node("Soul"):
 		emit_signal("soul_died")
 	dead = true

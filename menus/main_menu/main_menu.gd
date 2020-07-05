@@ -1,12 +1,16 @@
 extends Control
 
 
+func _ready():
+	$Options/NewGameButton.grab_focus()
+
+
 func _on_NewGameButton_pressed():
 	$AnimationPlayer.play("fade_out")
 
 
 func begin_new_game():
-	get_tree().change_scene("res://levels/level_test.tscn")
+	var _err = get_tree().change_scene("res://levels/train_station_1.tscn")
 
 
 func _on_LevelSelectButton_pressed():
@@ -28,8 +32,10 @@ func _on_ExitButton_pressed():
 func _on_Settings_popup_hide():
 	$Title.visible = true
 	$Options.visible = true
+	$Options/NewGameButton.grab_focus()
 
 
 func _on_LevelSelect_popup_hide():
 	$Title.visible = true
 	$Options.visible = true
+	$Options/NewGameButton.grab_focus()

@@ -126,5 +126,7 @@ pause={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.145098, 0.156863, 0.176471, 1 )
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

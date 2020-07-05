@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Settings" type="Popup"]
-visible = true
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -96,6 +96,9 @@ margin_bottom = 128.0
 text = "Back"
 [connection signal="pressed" from="VBoxContainer/FullscreenContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/FullscreenContainer/CheckBox" to="." method="_on_FullscreenCheckBox_pressed"]
+[connection signal="value_changed" from="VBoxContainer/MasterSlider/MarginContainer/Slider" to="." method="_on_MasterSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicSlider/MarginContainer/Slider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFXSlider/MarginContainer/Slider" to="." method="_on_SFXSlider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 
 [editable path="VBoxContainer/MasterSlider"]

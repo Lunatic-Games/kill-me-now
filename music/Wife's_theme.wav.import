@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Wife's_theme.wav-d2b9f9e5979db90f3d53a429fd0768da.sample"
+
+[deps]
+
+source_file="res://music/Wife's_theme.wav"
+dest_files=[ "res://.import/Wife's_theme.wav-d2b9f9e5979db90f3d53a429fd0768da.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

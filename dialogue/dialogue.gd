@@ -1,6 +1,6 @@
 extends Node2D
 
-var content
+export (Array, String) var content
 var page = 0
 var feed = ""
 var text = ""

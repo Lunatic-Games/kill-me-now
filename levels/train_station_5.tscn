@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://levels/level.gd" type="Script" id=10]
 [ext_resource path="res://contraptions/spikes/spikes.tscn" type="PackedScene" id=11]
+[ext_resource path="res://soul/camera.tscn" type="PackedScene" id=12]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/gate/gate.gd\"
@@ -96,6 +97,7 @@ script = ExtResource( 10 )
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 1
 collision_layer = 3
 collision_mask = 3
 format = 1
@@ -296,8 +298,6 @@ position = Vector2( 1520, 432 )
 [node name="Lever23" parent="Levers" instance=ExtResource( 5 )]
 position = Vector2( -368, 1072 )
 
-[node name="PauseMenu" parent="." instance=ExtResource( 9 )]
-
 [node name="Spikes" type="Node2D" parent="."]
 
 [node name="Spikes2" parent="Spikes" instance=ExtResource( 11 )]
@@ -305,6 +305,12 @@ position = Vector2( 368, 1552 )
 
 [node name="Spikes" parent="Spikes" instance=ExtResource( 11 )]
 position = Vector2( 336, 1552 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 12 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 9 )]
 [connection signal="toggled" from="PressurePlates/PressurePlate" to="Gates/Gate" method="_on_PressurePlate_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate6" method="_on_PressurePlate46_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate4" method="_on_PressurePlate46_toggled"]

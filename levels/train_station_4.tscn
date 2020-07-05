@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://contraptions/electric_rail/electric_rail.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/level.gd" type="Script" id=9]
+[ext_resource path="res://levels/train_station_5.tscn" type="PackedScene" id=10]
+[ext_resource path="res://soul/camera.tscn" type="PackedScene" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
@@ -58,14 +60,14 @@ func _on_Lever_pulled(on):
 		turn_off()
 "
 
-[node name="train_station_1" type="Node2D"]
+[node name="train_station_4" type="Node2D"]
 script = ExtResource( 9 )
-
-[node name="PauseMenu" parent="." instance=ExtResource( 8 )]
+next_level = ExtResource( 10 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 1
 collision_layer = 3
 collision_mask = 3
 format = 1
@@ -168,6 +170,13 @@ on = false
 position = Vector2( 672, 528 )
 script = SubResource( 4 )
 on = false
+
+[node name="Camera2D" parent="." instance=ExtResource( 11 )]
+position = Vector2( 343, 439 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 8 )]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]

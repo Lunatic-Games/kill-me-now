@@ -14,11 +14,11 @@ func _on_Body_soul_died():
 		print("No next level")
 		return
 	yield(get_tree().create_timer(1.0), "timeout")
-	get_tree().change_scene_to(next_level)
+	var _err = get_tree().change_scene_to(next_level)
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and !$PauseMenu.visible:
+	if event.is_action_pressed("pause") and !$CanvasLayer/PauseMenu.visible:
 		get_tree().paused = true
-		$PauseMenu.popup()
+		$CanvasLayer/PauseMenu.popup_centered(Vector2(1024, 576))
 		get_tree().set_input_as_handled()
