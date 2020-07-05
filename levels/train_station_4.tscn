@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -6,6 +6,55 @@
 [ext_resource path="res://contraptions/fence/fence.tscn" type="PackedScene" id=4]
 [ext_resource path="res://contraptions/lever/lever.tscn" type="PackedScene" id=5]
 [ext_resource path="res://contraptions/soul_fence/soul_fence.tscn" type="PackedScene" id=6]
+[ext_resource path="res://contraptions/electric_rail/electric_rail.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
+
+
+
+func _on_Lever_pulled(on):
+	if on:
+		turn_on()
+	else:
+		turn_off()
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
+
+
+
+func _on_Lever_pulled(on):
+	if on:
+		turn_on()
+	else:
+		turn_off()
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
+
+
+
+func _on_Lever_pulled(on):
+	if on:
+		turn_on()
+	else:
+		turn_off()
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
+
+
+
+func _on_Lever_pulled(on):
+	if on:
+		turn_on()
+	else:
+		turn_off()
+"
 
 [node name="train_station_1" type="Node2D"]
 
@@ -89,3 +138,29 @@ position = Vector2( -461, 680 )
 
 [node name="Unreachable" parent="Bodies" instance=ExtResource( 3 )]
 position = Vector2( -973, 680 )
+
+[node name="ElectricRails" type="Node2D" parent="."]
+
+[node name="ElectricRail" parent="ElectricRails" instance=ExtResource( 7 )]
+position = Vector2( 32, 528 )
+script = SubResource( 1 )
+on = false
+
+[node name="ElectricRail2" parent="ElectricRails" instance=ExtResource( 7 )]
+position = Vector2( 96, 528 )
+script = SubResource( 2 )
+on = false
+
+[node name="ElectricRail3" parent="ElectricRails" instance=ExtResource( 7 )]
+position = Vector2( 608, 528 )
+script = SubResource( 3 )
+on = false
+
+[node name="ElectricRail4" parent="ElectricRails" instance=ExtResource( 7 )]
+position = Vector2( 672, 528 )
+script = SubResource( 4 )
+on = false
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
