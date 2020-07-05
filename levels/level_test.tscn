@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://body/body.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://contraptions/fence/fence.tscn" type="PackedScene" id=9]
 [ext_resource path="res://contraptions/anvil/anvil.tscn" type="PackedScene" id=10]
 [ext_resource path="res://contraptions/pressure_plate/pressure_plate.tscn" type="PackedScene" id=11]
+[ext_resource path="res://contraptions/spikes/spikes.tscn" type="PackedScene" id=12]
+[ext_resource path="res://contraptions/electric_rail/electric_rail.tscn" type="PackedScene" id=13]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/gate/gate.gd\"
@@ -67,6 +69,13 @@ position = Vector2( 384, 80 )
 
 [node name="PressurePlate" parent="." instance=ExtResource( 11 )]
 position = Vector2( 512, 528 )
+
+[node name="Spikes" parent="." instance=ExtResource( 12 )]
+position = Vector2( 720, 528 )
+
+[node name="ElectricRail" parent="." instance=ExtResource( 13 )]
+position = Vector2( 608, 528 )
+on = false
 
 [node name="NPC" parent="." instance=ExtResource( 3 )]
 position = Vector2( 272.343, 526.789 )

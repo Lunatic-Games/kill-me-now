@@ -64,6 +64,10 @@ func _physics_process(delta):
 func release_soul():
 	if !has_node("Soul"):
 		return
+	call_deferred("remove_soul_child")
+
+
+func remove_soul_child():
 	var soul = get_node("Soul")
 	var pos = soul.global_position
 	remove_child(soul)
@@ -76,6 +80,7 @@ func release_soul():
 func soul_entered():
 	set_direction(sign(get_node("Soul/Sprite").scale.x))
 	$AnimationPlayer.play("idle")
+	
 
 
 func interact():
