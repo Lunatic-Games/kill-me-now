@@ -2,7 +2,7 @@ extends Popup
 
 
 func _unhandled_input(event):
-	if visible and (event.is_action_pressed("pause") or event.is_action_pressed("ui_back")):
+	if visible and (event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel")):
 		get_tree().paused = false
 		get_tree().set_input_as_handled()
 		hide()

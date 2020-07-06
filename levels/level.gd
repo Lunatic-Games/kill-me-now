@@ -3,10 +3,15 @@ extends Node2D
 
 export (PackedScene) var next_level
 
+const music_scene = preload("res://levels/level_music.tscn")
+
 
 func _ready():
 	for body in get_tree().get_nodes_in_group("body"):
 		body.connect("soul_died", self, "_on_Body_soul_died")
+	if !get_tree().root.has_node("Music"):
+		var music = music_scene.instance()
+		get_tree().root.call_deferred("add_child", music)
 
 
 func _on_Body_soul_died():
@@ -23,4 +28,4 @@ func _unhandled_input(event):
 		$CanvasLayer/PauseMenu.popup_centered(Vector2(1024, 576))
 		get_tree().set_input_as_handled()
 	if event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
+		var _err = get_tree().reload_current_scene()

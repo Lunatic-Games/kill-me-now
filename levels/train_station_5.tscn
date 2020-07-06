@@ -96,7 +96,7 @@ func _on_PressurePlate46_toggled(on):
 		close()
 "
 
-[node name="train_station_1" type="Node2D"]
+[node name="train_station_5" type="Node2D"]
 script = ExtResource( 10 )
 
 [node name="Background" type="Sprite" parent="."]
@@ -369,8 +369,8 @@ position = Vector2( -1433, 741 )
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 9 )]
 [connection signal="toggled" from="PressurePlates/PressurePlate" to="Gates/Gate" method="_on_PressurePlate_toggled"]
-[connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate6" method="_on_PressurePlate46_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate4" method="_on_PressurePlate46_toggled"]
+[connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate6" method="_on_PressurePlate46_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate4" to="Gates/Gate4" method="_on_PressurePlate4_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate5" to="Gates/Gate5" method="_on_PressurePlate5_toggled"]
 [connection signal="pulled" from="Levers/Lever23" to="Gates/Gate2" method="_on_Lever23_pulled"]

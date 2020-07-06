@@ -18,7 +18,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if visible and (event.is_action_pressed("ui_back") or event.is_action_pressed("pause")):
+	if visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")):
 		get_tree().set_input_as_handled()
 		hide()
 		
