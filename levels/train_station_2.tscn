@@ -137,6 +137,6 @@ position = Vector2( -226, 382 )
 [node name="VerticalCameraBoundry2" parent="CameraBoundry" instance=ExtResource( 6 )]
 position = Vector2( 1589, 394 )
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
