@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://contraptions/gate/gate.tscn" type="PackedScene" id=2]
@@ -14,7 +14,10 @@
 [ext_resource path="res://levels/level.gd" type="Script" id=12]
 [ext_resource path="res://levels/vertical_camera_boundry.tscn" type="PackedScene" id=13]
 [ext_resource path="res://levels/horizontal_camera_boundry.tscn" type="PackedScene" id=14]
-[ext_resource path="res://levels/end_scene.tscn" type="PackedScene" id=15]
+[ext_resource path="res://decorations/lamp.tscn" type="PackedScene" id=15]
+[ext_resource path="res://decorations/torch.tscn" type="PackedScene" id=16]
+[ext_resource path="res://npc/npc.tscn" type="PackedScene" id=17]
+[ext_resource path="res://decorations/background.png" type="Texture" id=18]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/gate/gate.gd\"
@@ -162,8 +165,12 @@ func _on_PressurePlate3_toggled(on):
 
 [node name="dungeon_1" type="Node2D"]
 script = ExtResource( 12 )
-next_level = ExtResource( 15 )
-level_number = 6
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 83, -379 )
+texture = ExtResource( 18 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10000, 10000 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 10 )]
 
@@ -250,6 +257,13 @@ position = Vector2( 848, 279 )
 rotation = 1.5708
 
 [node name="SoulFence2" parent="SoulFences/SoulFence4" instance=ExtResource( 4 )]
+position = Vector2( 0, 32 )
+
+[node name="SoulFence6" parent="SoulFences" instance=ExtResource( 4 )]
+position = Vector2( 656, 266 )
+rotation = 1.5708
+
+[node name="SoulFence2" parent="SoulFences/SoulFence6" instance=ExtResource( 4 )]
 position = Vector2( 0, 32 )
 
 [node name="SoulFence2" parent="SoulFences" instance=ExtResource( 4 )]
@@ -436,6 +450,56 @@ position = Vector2( -1096, 344 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 11 )]
+
+[node name="Lights" type="Node2D" parent="."]
+position = Vector2( 17, -28 )
+
+[node name="Lamp" parent="Lights" instance=ExtResource( 15 )]
+position = Vector2( 45, 492 )
+
+[node name="Lamp2" parent="Lights" instance=ExtResource( 15 )]
+position = Vector2( 269, 492 )
+
+[node name="Lamp3" parent="Lights" instance=ExtResource( 15 )]
+position = Vector2( 13, 76 )
+
+[node name="Lamp4" parent="Lights" instance=ExtResource( 15 )]
+position = Vector2( 109, 620 )
+
+[node name="Lamp5" parent="Lights" instance=ExtResource( 15 )]
+position = Vector2( 205, 620 )
+
+[node name="Torch" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( 51, 234 )
+
+[node name="Torch2" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( 269, 236 )
+
+[node name="Torch3" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( -373, 340 )
+
+[node name="Torch4" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( 930, 68 )
+
+[node name="Torch5" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( 716, 325 )
+
+[node name="Torch6" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( 168, -18 )
+
+[node name="Torch7" parent="Lights" instance=ExtResource( 16 )]
+position = Vector2( 143, 427 )
+
+[node name="NPCs" type="Node2D" parent="."]
+position = Vector2( 4, 2 )
+
+[node name="NPC" parent="NPCs" instance=ExtResource( 17 )]
+position = Vector2( 91, 510 )
+dialogue = [ "It looks like there's an order to this...", "I got it wrong.", "I figured out I can press \"r\" to retry" ]
+
+[node name="NPC2" parent="NPCs" instance=ExtResource( 17 )]
+position = Vector2( 204, 350 )
+dialogue = [ "So many gates...", "Where do they go?", "Or better yet, why are they here?" ]
 [connection signal="pulled" from="Levers/Lever" to="Gates/Gate4" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever2" to="Gates/Gate9" method="_on_Lever2_pulled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate" to="Gates/Gate7" method="_on_PressurePlate_toggled"]
