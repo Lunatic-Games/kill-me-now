@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lo_se.wav-2ae89ea73243bb87f1042f8dd874748b.sample"
+
+[deps]
+
+source_file="res://sfx/lo_se.wav"
+dest_files=[ "res://.import/lo_se.wav-2ae89ea73243bb87f1042f8dd874748b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
