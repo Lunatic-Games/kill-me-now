@@ -1,15 +1,17 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
 [ext_resource path="res://body/body.tscn" type="PackedScene" id=3]
 [ext_resource path="res://contraptions/lever/lever.tscn" type="PackedScene" id=4]
 [ext_resource path="res://contraptions/fence/fence.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/vertical_camera_boundry.tscn" type="PackedScene" id=6]
 [ext_resource path="res://contraptions/electric_rail/electric_rail.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/pause_menu/pause_menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/level.gd" type="Script" id=9]
 [ext_resource path="res://levels/train_station_3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://soul/camera.tscn" type="PackedScene" id=11]
+[ext_resource path="res://levels/horizontal_camera_boundry.tscn" type="PackedScene" id=12]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
@@ -118,7 +120,23 @@ rotation = 1.5708
 [node name="Fence2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1328, 450 )
 rotation = 1.5708
+
+[node name="CameraBoundry" type="Node2D" parent="."]
+
+[node name="HorizontalCameraBoundry" parent="CameraBoundry" instance=ExtResource( 12 )]
+position = Vector2( 687, 103 )
+scale = Vector2( 2, 1 )
+
+[node name="HorizontalCameraBoundry2" parent="CameraBoundry" instance=ExtResource( 12 )]
+position = Vector2( 822, 970 )
+scale = Vector2( 2, 1 )
+
+[node name="VerticalCameraBoundry" parent="CameraBoundry" instance=ExtResource( 6 )]
+position = Vector2( -226, 382 )
+
+[node name="VerticalCameraBoundry2" parent="CameraBoundry" instance=ExtResource( 6 )]
+position = Vector2( 1589, 394 )
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
