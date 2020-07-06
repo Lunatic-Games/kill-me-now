@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://levels/vertical_camera_boundry.tscn" type="PackedScene" id=11]
 [ext_resource path="res://npc/npc.tscn" type="PackedScene" id=12]
 [ext_resource path="res://decorations/background.png" type="Texture" id=13]
-[ext_resource path="res://icon.png" type="Texture" id=14]
 [ext_resource path="res://decorations/tunnel.tscn" type="PackedScene" id=15]
 
 [node name="train_station_1" type="Node2D"]
@@ -62,19 +61,19 @@ position = Vector2( 952, 256 )
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="NPC3" parent="NPCs" instance=ExtResource( 12 )]
-position = Vector2( 497, 431 )
-dialogue = [ "I think my train should be here by now", "I feel like it's been an eternity...", "" ]
-npc_texture = ExtResource( 14 )
+position = Vector2( 492, 448 )
+dialogue = [ "I think my train should be here by now", "I feel like it's been an eternity..." ]
 
 [node name="NPC2" parent="NPCs" instance=ExtResource( 12 )]
-position = Vector2( 149, 431 )
+position = Vector2( 144, 448 )
 dialogue = [ "Those rails look dangerous", "I saw someone touch them...", "They just disappeared..." ]
-npc_texture = ExtResource( 14 )
 
 [node name="NPC" parent="NPCs" instance=ExtResource( 12 )]
-position = Vector2( 272, 432 )
+position = Vector2( 272, 448 )
 dialogue = [ "Oh, hey there", "You new here too?", "Well, best of luck to you friend" ]
-npc_texture = ExtResource( 14 )
+
+[node name="Sprite" parent="NPCs/NPC" index="2"]
+modulate = Color( 0.509804, 0.454902, 0.901961, 1 )
 
 [node name="Body" parent="." instance=ExtResource( 3 )]
 position = Vector2( 340, 421 )
@@ -100,3 +99,5 @@ position = Vector2( 344, 427 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 5 )]
+
+[editable path="NPCs/NPC"]
