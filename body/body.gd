@@ -23,7 +23,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if has_node("Soul"):
-		if Input.is_action_just_pressed("move_down"):
+		if Input.is_action_just_pressed("leave_body"):
 			release_soul()
 			return
 		
