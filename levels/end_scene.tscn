@@ -223,12 +223,18 @@ position = Vector2( -264, 256 )
 [node name="VerticalCameraBoundry2" parent="CameraBoundaries" instance=ExtResource( 11 )]
 position = Vector2( 1656, 288 )
 
+[node name="Torch" parent="." instance=ExtResource( 12 )]
+position = Vector2( 608, 392 )
+
+[node name="Torch2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 856, 384 )
+
+[node name="Torch3" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1096, 376 )
+
 [node name="Beth" type="Sprite" parent="."]
 position = Vector2( 1264, 424 )
 texture = ExtResource( 6 )
-
-[node name="Sprite" parent="Beth" instance=ExtResource( 12 )]
-position = Vector2( -656, -32 )
 
 [node name="Body" parent="." instance=ExtResource( 3 )]
 position = Vector2( 340, 421 )
