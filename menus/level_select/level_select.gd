@@ -9,7 +9,7 @@ const LEVELS = {
 	"4": "res://levels/train_station_4.tscn",
 	"5": "res://levels/train_station_5.tscn",
 	"6": "res://levels/dungeon_1.tscn",
-	"7": "res://levels/train_station_5.tscn"
+	"7": "res://levels/end_scene.tscn"
 }
 
 const ButtonScene = preload("res://menus/menu_button.tscn")
