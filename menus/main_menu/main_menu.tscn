@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menus/upheavtt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/main_menu/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://menus/menu_button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menus/settings/settings.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menus/level_select/level_select.tscn" type="PackedScene" id=5]
+[ext_resource path="res://music/Limbo_no_piano.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
@@ -29,8 +30,49 @@ outline_size = 1
 extra_spacing_char = 2
 font_data = ExtResource( 1 )
 
+[sub_resource type="Animation" id=4]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -10.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "fade_out"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Title:modulate")
 tracks/0/interp = 1
@@ -62,12 +104,24 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "begin_new_game"
 } ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -20.0, -80.0 ]
 }
 
 [node name="MainMenu" type="Control"]
@@ -81,7 +135,7 @@ __meta__ = {
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.145098, 0.156863, 0.176471, 1 )
+color = Color( 0.0870588, 0.0941178, 0.105883, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -108,6 +162,7 @@ __meta__ = {
 }
 
 [node name="Options" type="VBoxContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -144,7 +199,14 @@ text = "Exit"
 [node name="LevelSelect" parent="." instance=ExtResource( 5 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade_in"
+anims/fade_in = SubResource( 4 )
 anims/fade_out = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
 [connection signal="pressed" from="Options/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="Options/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
 [connection signal="pressed" from="Options/SettingsButton" to="." method="_on_SettingsButton_pressed"]

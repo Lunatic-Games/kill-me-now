@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Limbo_no_piano.wav-65c96d85a10ce37de732eda030567bb4.sample"
+
+[deps]
+
+source_file="res://music/Limbo_no_piano.wav"
+dest_files=[ "res://.import/Limbo_no_piano.wav-65c96d85a10ce37de732eda030567bb4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
