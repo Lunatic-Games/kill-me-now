@@ -396,6 +396,10 @@ position = Vector2( 1340, 156 )
 
 [node name="NPCs" type="Node2D" parent="."]
 
+[node name="NPC5" parent="NPCs" instance=ExtResource( 19 )]
+position = Vector2( 215, 448 )
+dialogue = [ "Theres a trap door in the middle of this platform...", "That wasn't there on other platforms... ", "Right?" ]
+
 [node name="NPC3" parent="NPCs" instance=ExtResource( 19 )]
 position = Vector2( -314, 864 )
 dialogue = [ "I think I heard something move back at the platform?" ]
@@ -407,6 +411,14 @@ dialogue = [ "AHHHHH!!!", "Oh you scared me....", "That body hasn't moved for.."
 [node name="NPC" parent="NPCs" instance=ExtResource( 19 )]
 position = Vector2( -1001, 1088 )
 dialogue = [ "I'm not sure how I got here...", "Oh well. At least it's cozy." ]
+
+[node name="NPC4" parent="NPCs" instance=ExtResource( 19 )]
+position = Vector2( 1166, 448 )
+dialogue = [ "That button up there...", "I think it controls the trapdoor on back on the platform." ]
+
+[node name="NPC6" parent="NPCs" instance=ExtResource( 19 )]
+position = Vector2( -79, 448 )
+dialogue = [ "Something's down there..." ]
 [connection signal="toggled" from="PressurePlates/PressurePlate" to="Gates/Gate" method="_on_PressurePlate_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate6" method="_on_PressurePlate46_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate4" method="_on_PressurePlate46_toggled"]
