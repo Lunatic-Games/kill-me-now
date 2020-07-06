@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://contraptions/lever/lever.gd" type="Script" id=1]
 [ext_resource path="res://contraptions/lever/lever.png" type="Texture" id=2]
+[ext_resource path="res://decorations/light.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,6 +21,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Rect2( 64, 0, 32, 32 ), Rect2( 96, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.2
@@ -34,6 +47,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 0, 0, 32, 32 ), Rect2( 32, 0, 32, 32 ), Rect2( 64, 0, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [node name="Lever" type="Node2D"]
@@ -57,3 +82,10 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flip_left = SubResource( 2 )
 anims/flip_right = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 15, -4 )
+enabled = false
+texture = ExtResource( 3 )
+texture_scale = 0.05
+mode = 2
