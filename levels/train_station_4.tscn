@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://soul/camera.tscn" type="PackedScene" id=11]
 [ext_resource path="res://levels/vertical_camera_boundry.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/horizontal_camera_boundry.tscn" type="PackedScene" id=13]
+[ext_resource path="res://decorations/lamp.tscn" type="PackedScene" id=14]
+[ext_resource path="res://decorations/tunnel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://decorations/background.png" type="Texture" id=16]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
@@ -65,6 +68,25 @@ func _on_Lever_pulled(on):
 [node name="train_station_4" type="Node2D"]
 script = ExtResource( 9 )
 next_level = ExtResource( 10 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 282, -334 )
+texture = ExtResource( 16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10000, 10000 )
+
+[node name="Lamp" parent="." instance=ExtResource( 14 )]
+
+[node name="Lamp2" parent="." instance=ExtResource( 14 )]
+position = Vector2( 528, 400 )
+
+[node name="Tunnel" parent="." instance=ExtResource( 15 )]
+
+[node name="Tunnel2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 640, 432 )
+
+[node name="Lamp3" parent="." instance=ExtResource( 14 )]
+position = Vector2( -976, 656 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -149,7 +171,7 @@ position = Vector2( 0, 4 )
 position = Vector2( -461, 680 )
 
 [node name="Unreachable" parent="Bodies" instance=ExtResource( 3 )]
-position = Vector2( -973, 680 )
+position = Vector2( -958, 680 )
 
 [node name="ElectricRails" type="Node2D" parent="."]
 
@@ -199,7 +221,7 @@ position = Vector2( 814, 642 )
 
 [node name="VerticalCameraBoundry2" parent="CameraBoundaries" instance=ExtResource( 12 )]
 position = Vector2( -1461, 642 )
-[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
