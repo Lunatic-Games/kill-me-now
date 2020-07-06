@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Limbo.wav-22295b1d9ed89c85991ce3a16fa30168.sample"
+
+[deps]
+
+source_file="res://music/Limbo.wav"
+dest_files=[ "res://.import/Limbo.wav-22295b1d9ed89c85991ce3a16fa30168.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

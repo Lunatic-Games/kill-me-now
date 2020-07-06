@@ -27,7 +27,7 @@ func _on_BackButton_pressed():
 	hide()
 
 
-func popup(rect=null):
+func popup(_rect=null):
 	.popup()
 	$VBoxContainer/FullscreenContainer/FullscreenButton.grab_focus()
 

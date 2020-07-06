@@ -10,7 +10,7 @@ func _on_NewGameButton_pressed():
 
 
 func begin_new_game():
-	var _err = get_tree().change_scene("res://levels/train_station_1.tscn")
+	var _err = get_tree().change_scene("res://levels/car_scene.tscn")
 
 
 func _on_LevelSelectButton_pressed():
