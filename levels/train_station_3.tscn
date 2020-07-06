@@ -102,7 +102,7 @@ script = SubResource( 2 )
 position = Vector2( 368, 911 )
 
 [node name="Lever" parent="Levers" instance=ExtResource( 4 )]
-position = Vector2( 624, 848 )
+position = Vector2( 687, 848 )
 
 [node name="Bodies" type="Node2D" parent="."]
 
