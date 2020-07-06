@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://decorations/tunnel.tscn" type="PackedScene" id=13]
 [ext_resource path="res://decorations/background.png" type="Texture" id=14]
 [ext_resource path="res://decorations/lamp.tscn" type="PackedScene" id=15]
+[ext_resource path="res://npc/npc.tscn" type="PackedScene" id=16]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/electric_rail/electric_rail.gd\"
@@ -102,6 +103,9 @@ position = Vector2( 340, 421 )
 show_behind_parent = true
 position = Vector2( 0, 4 )
 
+[node name="Body2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1214, 840 )
+
 [node name="Lever" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1232, 432 )
 
@@ -126,6 +130,25 @@ on = false
 position = Vector2( 608, 528 )
 script = SubResource( 4 )
 on = false
+
+[node name="NPCs" type="Node2D" parent="."]
+position = Vector2( -2, 1 )
+
+[node name="NPC" parent="NPCs" instance=ExtResource( 16 )]
+position = Vector2( 1138, 863 )
+dialogue = [ "Oh!", "I didn't think anyone would find me here...", "You must be one clever cookie!", "I think I was... once..." ]
+
+[node name="NPC2" parent="NPCs" instance=ExtResource( 16 )]
+position = Vector2( 555, 447 )
+dialogue = [ "Huh", "Weren't the rails on in the last station?" ]
+
+[node name="NPC3" parent="NPCs" instance=ExtResource( 16 )]
+position = Vector2( 1362, 447 )
+dialogue = [ "Did you hear something down there?", "Must have been the wind..." ]
+
+[node name="NPC4" parent="NPCs" instance=ExtResource( 16 )]
+position = Vector2( -14, 447 )
+dialogue = [ "...", "am I waiting for something?", "...", "..." ]
 
 [node name="Camera2D" parent="." instance=ExtResource( 11 )]
 position = Vector2( 343, 430 )
@@ -159,5 +182,5 @@ position = Vector2( 1589, 394 )
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 8 )]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
