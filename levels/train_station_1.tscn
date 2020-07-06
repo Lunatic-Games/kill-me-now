@@ -59,6 +59,23 @@ position = Vector2( -264, 256 )
 [node name="VerticalCameraBoundry2" parent="CameraBoundaries" instance=ExtResource( 11 )]
 position = Vector2( 952, 256 )
 
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="NPC3" parent="NPCs" instance=ExtResource( 12 )]
+position = Vector2( 497, 431 )
+dialogue = [ "I think my train should be here by now", "I feel like it's been an eternity...", "" ]
+npc_texture = ExtResource( 14 )
+
+[node name="NPC2" parent="NPCs" instance=ExtResource( 12 )]
+position = Vector2( 149, 431 )
+dialogue = [ "Those rails look dangerous", "I saw someone touch them...", "They just disappeared..." ]
+npc_texture = ExtResource( 14 )
+
+[node name="NPC" parent="NPCs" instance=ExtResource( 12 )]
+position = Vector2( 272, 432 )
+dialogue = [ "Oh, hey there", "You new here too?", "Well, best of luck to you friend" ]
+npc_texture = ExtResource( 14 )
+
 [node name="Body" parent="." instance=ExtResource( 3 )]
 position = Vector2( 340, 421 )
 
@@ -83,20 +100,3 @@ position = Vector2( 344, 427 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 5 )]
-
-[node name="NPCs" type="Node2D" parent="."]
-
-[node name="NPC3" parent="NPCs" instance=ExtResource( 12 )]
-position = Vector2( 497, 431 )
-dialogue = [ "I think my train should be here by now", "I feel like it's been an eternity...", "" ]
-npc_texture = ExtResource( 14 )
-
-[node name="NPC2" parent="NPCs" instance=ExtResource( 12 )]
-position = Vector2( 149, 431 )
-dialogue = [ "Those rails look dangerous", "I saw someone touch them...", "They just disappeared..." ]
-npc_texture = ExtResource( 14 )
-
-[node name="NPC" parent="NPCs" instance=ExtResource( 12 )]
-position = Vector2( 272, 432 )
-dialogue = [ "Oh, hey there", "You new here too?", "Well, best of luck to you friend" ]
-npc_texture = ExtResource( 14 )

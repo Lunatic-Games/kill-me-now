@@ -22,3 +22,5 @@ func _unhandled_input(event):
 		get_tree().paused = true
 		$CanvasLayer/PauseMenu.popup_centered(Vector2(1024, 576))
 		get_tree().set_input_as_handled()
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()

@@ -109,10 +109,6 @@ on = false
 [node name="Camera2D" parent="." instance=ExtResource( 11 )]
 position = Vector2( 343, 430 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 8 )]
-
 [node name="Fence" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1296, 450 )
 rotation = 1.5708
@@ -136,7 +132,11 @@ position = Vector2( -226, 382 )
 
 [node name="VerticalCameraBoundry2" parent="CameraBoundry" instance=ExtResource( 6 )]
 position = Vector2( 1589, 394 )
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 8 )]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
