@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/upheavtt.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://sfx/hi_se.wav" type="AudioStream" id=2]
+[ext_resource path="res://menus/menu_button.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -33,6 +35,14 @@ custom_colors/font_color_hover = Color( 1, 0.345098, 0.368627, 1 )
 custom_colors/font_color_pressed = Color( 0.403922, 0.141176, 0.14902, 1 )
 text = "Button"
 flat = true
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UnfocusSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
+bus = "SFX"
+[connection signal="focus_exited" from="." to="." method="_on_MenuButton_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_MenuButton_pressed"]

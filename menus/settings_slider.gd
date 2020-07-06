@@ -23,6 +23,7 @@ func _on_Slider_focus_entered():
 # Remove highlighting of label when slider focus is removed
 func _on_Slider_focus_exited():
 	$Label.pressed = false
+	$Label/UnfocusSFX.play()
 	$HoldTimer.stop()
 	held = false
 
@@ -32,9 +33,11 @@ func _on_Slider_gui_input(_event):
 	if Input.is_action_just_pressed("ui_right") and $HoldTimer.is_stopped():
 		$HoldTimer.start()
 		$MarginContainer/Slider.value += SLIDE_JUMP
+		$Label/UnfocusSFX.play()
 	if Input.is_action_just_pressed("ui_left") and $HoldTimer.is_stopped():
 		$HoldTimer.start()
 		$MarginContainer/Slider.value -= SLIDE_JUMP
+		$Label/UnfocusSFX.play()
 
 	if (Input.is_action_just_released("ui_left") 
 			and !Input.is_action_pressed("ui_right")):

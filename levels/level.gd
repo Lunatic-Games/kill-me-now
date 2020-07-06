@@ -2,6 +2,7 @@ extends Node2D
 
 
 export (PackedScene) var next_level
+export (int) var level_number = 0
 
 const music_scene = preload("res://levels/level_music.tscn")
 
@@ -19,6 +20,7 @@ func _on_Body_soul_died():
 		print("No next level")
 		return
 	yield(get_tree().create_timer(1.0), "timeout")
+	LevelsComplete.level_completed(str(level_number))
 	var _err = get_tree().change_scene_to(next_level)
 
 

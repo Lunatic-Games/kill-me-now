@@ -19,6 +19,10 @@ config/name="Kill Me Now"
 run/main_scene="res://levels/level_test.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+LevelsComplete="*res://levels_complete.gd"
+
 [display]
 
 window/size/height=576
