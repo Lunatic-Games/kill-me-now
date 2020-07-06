@@ -36,7 +36,7 @@ margin_right = 200.0
 rect_pivot_offset = Vector2( 200, 0 )
 custom_constants/vseparation = 5
 custom_constants/hseparation = 15
-columns = 5
+columns = 4
 
 [node name="BackButton" parent="VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 11.0
