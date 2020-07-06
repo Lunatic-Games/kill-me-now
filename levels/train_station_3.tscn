@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://decorations/tunnel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://decorations/background.png" type="Texture" id=15]
 [ext_resource path="res://contraptions/electric_rail/electric_rail.tscn" type="PackedScene" id=16]
+[ext_resource path="res://npc/npc.tscn" type="PackedScene" id=17]
+[ext_resource path="res://decorations/torch.tscn" type="PackedScene" id=18]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/gate/gate.gd\"
@@ -122,6 +124,16 @@ position = Vector2( 880, 1104 )
 [node name="Spikes2" parent="Spikes" instance=ExtResource( 6 )]
 position = Vector2( 912, 1104 )
 
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="NPC" parent="NPCs" instance=ExtResource( 17 )]
+position = Vector2( 592, 864 )
+dialogue = [ "You're stuck here too?", "I think you can press \"q\" to leave your body", "Maybe you can explore a little bit?" ]
+
+[node name="NPC2" parent="NPCs" instance=ExtResource( 17 )]
+position = Vector2( 112, 544 )
+dialogue = [ "...Pssst...", "hey pal...", "you ever dance with the devil in the pale moonlight?" ]
+
 [node name="Camera2D" parent="." instance=ExtResource( 10 )]
 
 [node name="CameraBoundaries" type="Node2D" parent="."]
@@ -141,5 +153,11 @@ position = Vector2( 1476, 884 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
+
+[node name="Torch2" parent="." instance=ExtResource( 18 )]
+position = Vector2( 901, 830 )
+
+[node name="Torch" parent="." instance=ExtResource( 18 )]
+position = Vector2( 418, 868 )
 [connection signal="pulled" from="Levers/Lever2" to="Gates/Gate2" method="_on_Lever2_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="Gates/Gate" method="_on_Lever_pulled"]
