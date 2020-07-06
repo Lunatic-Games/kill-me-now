@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://decorations/god_foot.png" type="Texture" id=1]
 [ext_resource path="res://tiles/cloud_tiles.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://dialogue/dialogue.tscn" type="PackedScene" id=5]
 [ext_resource path="res://menus/upheavtt.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://levels/god_scene.gd" type="Script" id=7]
+[ext_resource path="res://music/Heaven Roads.wav" type="AudioStream" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -261,6 +262,18 @@ tracks/12/keys = {
 "method": "anim_done"
 } ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -80.0, -15.0, 0.0 ]
+}
 
 [node name="GodScene" type="Node2D"]
 script = ExtResource( 7 )
@@ -287,8 +300,7 @@ position = Vector2( 938, 510 )
 texture = ExtResource( 1 )
 
 [node name="Person" type="Sprite" parent="."]
-position = Vector2( 385, 605 )
-scale = Vector2( -1, 1 )
+position = Vector2( 528, 520 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 48, 48 )
@@ -348,10 +360,16 @@ margin_left = -4.0
 margin_top = -10.0
 margin_right = 1028.0
 margin_bottom = 580.0
-color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -80.0
+pitch_scale = 0.5
+autoplay = true
+bus = "Music"
 
 [editable path="GodDialogueP1"]
 
