@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://tiles/dungeon_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://soul/soul.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://decorations/tunnel.tscn" type="PackedScene" id=17]
 [ext_resource path="res://decorations/torch.tscn" type="PackedScene" id=18]
 [ext_resource path="res://npc/npc.tscn" type="PackedScene" id=19]
+[ext_resource path="res://levels/dungeon_1.tscn" type="PackedScene" id=20]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://contraptions/gate/gate.gd\"
@@ -99,7 +100,11 @@ func _on_PressurePlate46_toggled(on):
 "
 
 [node name="train_station_5" type="Node2D"]
+z_index = -2
+z_as_relative = false
 script = ExtResource( 10 )
+next_level = ExtResource( 20 )
+level_number = 5
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 725, -36 )
@@ -400,29 +405,62 @@ position = Vector2( 1340, 156 )
 position = Vector2( 215, 448 )
 dialogue = [ "Theres a trap door in the middle of this platform...", "That wasn't there on other platforms... ", "Right?" ]
 
+[node name="Sprite" parent="NPCs/NPC5" index="2"]
+modulate = Color( 0.407843, 0.984314, 1, 1 )
+
 [node name="NPC3" parent="NPCs" instance=ExtResource( 19 )]
 position = Vector2( -314, 864 )
 dialogue = [ "I think I heard something move back at the platform?" ]
+
+[node name="Sprite" parent="NPCs/NPC3" index="2"]
+modulate = Color( 0.486275, 1, 0.588235, 1 )
 
 [node name="NPC2" parent="NPCs" instance=ExtResource( 19 )]
 position = Vector2( -620, 1312 )
 dialogue = [ "AHHHHH!!!", "Oh you scared me....", "That body hasn't moved for..", "Well, a while... I think.." ]
 
+[node name="Dialogue" parent="NPCs/NPC2" index="0"]
+position = Vector2( 4, -96 )
+
+[node name="Sprite" parent="NPCs/NPC2" index="2"]
+modulate = Color( 1, 0.435294, 0.435294, 1 )
+
 [node name="NPC" parent="NPCs" instance=ExtResource( 19 )]
 position = Vector2( -1001, 1088 )
 dialogue = [ "I'm not sure how I got here...", "Oh well. At least it's cozy." ]
 
+[node name="Sprite" parent="NPCs/NPC" index="2"]
+modulate = Color( 1, 0.658824, 0.223529, 1 )
+
 [node name="NPC4" parent="NPCs" instance=ExtResource( 19 )]
-position = Vector2( 1166, 448 )
+position = Vector2( 1096, 448 )
 dialogue = [ "That button up there...", "I think it controls the trapdoor on back on the platform." ]
+
+[node name="Sprite" parent="NPCs/NPC4" index="2"]
+modulate = Color( 0.996078, 0.423529, 1, 1 )
 
 [node name="NPC6" parent="NPCs" instance=ExtResource( 19 )]
 position = Vector2( -79, 448 )
 dialogue = [ "Something's down there..." ]
+
+[node name="Sprite" parent="NPCs/NPC6" index="2"]
+modulate = Color( 0.478431, 0.133333, 0.584314, 1 )
 [connection signal="toggled" from="PressurePlates/PressurePlate" to="Gates/Gate" method="_on_PressurePlate_toggled"]
-[connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate6" method="_on_PressurePlate46_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate4" method="_on_PressurePlate46_toggled"]
+[connection signal="toggled" from="PressurePlates/PressurePlate46" to="Gates/Gate6" method="_on_PressurePlate46_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate4" to="Gates/Gate4" method="_on_PressurePlate4_toggled"]
 [connection signal="toggled" from="PressurePlates/PressurePlate5" to="Gates/Gate5" method="_on_PressurePlate5_toggled"]
 [connection signal="pulled" from="Levers/Lever23" to="Gates/Gate2" method="_on_Lever23_pulled"]
 [connection signal="pulled" from="Levers/Lever23" to="Gates/Gate3" method="_on_Lever23_pulled"]
+
+[editable path="NPCs/NPC5"]
+
+[editable path="NPCs/NPC3"]
+
+[editable path="NPCs/NPC2"]
+
+[editable path="NPCs/NPC"]
+
+[editable path="NPCs/NPC4"]
+
+[editable path="NPCs/NPC6"]

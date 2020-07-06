@@ -41,8 +41,8 @@ func _physics_process(_delta):
 			set_direction(1)
 			if abs(velocity.y) < 10.0:
 				$AnimationPlayer.play("moving")
-		if (Input.is_action_just_pressed("jump") or 
-				Input.is_action_just_pressed("move_up") and jumps_used < NUM_JUMPS):
+		if ((Input.is_action_just_pressed("jump") or 
+				Input.is_action_just_pressed("move_up")) and jumps_used < NUM_JUMPS):
 			jumps_used += 1
 			velocity.y = -JUMP_SPEED
 		
@@ -84,6 +84,10 @@ func kill():
 	get_parent().add_child(particles)
 	particles.global_position = pos
 	particles.emitting = true
+	var sound = $DeathSound
+	remove_child(sound)
+	get_parent().add_child(sound)
+	sound.play()
 	queue_free()
 
 

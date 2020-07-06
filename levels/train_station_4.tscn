@@ -68,6 +68,8 @@ func _on_Lever_pulled(on):
 "
 
 [node name="train_station_4" type="Node2D"]
+z_index = -2
+z_as_relative = false
 script = ExtResource( 9 )
 next_level = ExtResource( 10 )
 level_number = 4
@@ -237,10 +239,15 @@ position = Vector2( -824, 661 )
 position = Vector2( -772, 704 )
 dialogue = [ "Huh, my soul cant pass this barrier", "But my body can...", "What a strange world we exist in" ]
 
+[node name="Sprite" parent="NPCs/NPC" index="2"]
+modulate = Color( 0, 0.882353, 1, 1 )
+
 [node name="NPC2" parent="NPCs" instance=ExtResource( 18 )]
 position = Vector2( -80, 448 )
 dialogue = [ "Down those steps is a metal fence...", "I couldn't figure out how to get through", "Guess Ill just stay up here..." ]
-[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Levers/Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
+
+[editable path="NPCs/NPC"]

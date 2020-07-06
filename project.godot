@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Kill Me Now"
 run/main_scene="res://menus/splash/splash.tscn"
+boot_splash/image="res://boot_splash.png"
 config/icon="res://icon.png"
 
 [autoload]

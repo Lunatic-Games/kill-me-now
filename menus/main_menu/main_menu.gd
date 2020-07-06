@@ -3,6 +3,9 @@ extends Control
 
 func _ready():
 	$Options/NewGameButton.grab_focus()
+	if get_tree().root.has_node("Music"):
+		get_tree().root.call_deferred("remove_child",
+			get_tree().root.get_node("Music"))
 
 
 func _on_NewGameButton_pressed():

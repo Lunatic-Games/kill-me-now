@@ -13,4 +13,5 @@ func _on_Touchdown_area_entered(area):
 
 
 func end():
+	LevelsComplete.level_completed("7")
 	var _err = get_tree().change_scene("res://menus/main_menu/main_menu.tscn")

@@ -22,6 +22,8 @@ level_number = 1
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 312, 392 )
+z_index = -2
+z_as_relative = false
 texture = ExtResource( 13 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 100000, 10000 )
@@ -63,7 +65,10 @@ position = Vector2( 952, 256 )
 
 [node name="NPC3" parent="NPCs" instance=ExtResource( 12 )]
 position = Vector2( 492, 448 )
-dialogue = [ "I think my train should be here by now", "I feel like it's been an eternity..." ]
+dialogue = [ "The train still hasn't arrived yet..", "I feel like it's been an eternity..." ]
+
+[node name="Sprite" parent="NPCs/NPC3" index="2"]
+modulate = Color( 1, 0.427451, 0.427451, 1 )
 
 [node name="NPC2" parent="NPCs" instance=ExtResource( 12 )]
 position = Vector2( 144, 448 )
@@ -71,7 +76,7 @@ dialogue = [ "Those rails look dangerous", "I saw someone touch them...", "They 
 
 [node name="NPC" parent="NPCs" instance=ExtResource( 12 )]
 position = Vector2( 272, 448 )
-dialogue = [ "Oh, hey there", "You new here too?", "Well, best of luck to you friend" ]
+dialogue = [ "Oh, hey there. Press E", "You new here too?", "Well, best of luck to you, friend" ]
 
 [node name="Sprite" parent="NPCs/NPC" index="2"]
 modulate = Color( 0.509804, 0.454902, 0.901961, 1 )
@@ -100,5 +105,7 @@ position = Vector2( 344, 427 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 5 )]
+
+[editable path="NPCs/NPC3"]
 
 [editable path="NPCs/NPC"]

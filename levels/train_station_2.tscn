@@ -72,6 +72,8 @@ next_level = ExtResource( 10 )
 level_number = 2
 
 [node name="Background" type="Sprite" parent="."]
+z_index = -2
+z_as_relative = false
 texture = ExtResource( 14 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 10000, 10000 )
@@ -137,12 +139,22 @@ on = false
 position = Vector2( -2, 1 )
 
 [node name="NPC" parent="NPCs" instance=ExtResource( 16 )]
+modulate = Color( 0.996078, 0.996078, 0.996078, 1 )
 position = Vector2( 1138, 863 )
 dialogue = [ "Oh!", "I didn't think anyone would find me here...", "You must be one clever cookie!", "I think I was... once..." ]
 
+[node name="Dialogue" parent="NPCs/NPC" index="0"]
+position = Vector2( 0, -89 )
+
+[node name="Sprite" parent="NPCs/NPC" index="2"]
+modulate = Color( 0.996078, 0.694118, 1, 1 )
+
 [node name="NPC2" parent="NPCs" instance=ExtResource( 16 )]
 position = Vector2( 555, 447 )
-dialogue = [ "Huh", "Weren't the rails on in the last station?" ]
+dialogue = [ "Huh", "The rails seem to be turned off..." ]
+
+[node name="Sprite" parent="NPCs/NPC2" index="2"]
+modulate = Color( 0.494118, 1, 0.988235, 1 )
 
 [node name="NPC3" parent="NPCs" instance=ExtResource( 16 )]
 position = Vector2( 1362, 447 )
@@ -150,7 +162,10 @@ dialogue = [ "Did you hear something down there?", "Must have been the wind..." 
 
 [node name="NPC4" parent="NPCs" instance=ExtResource( 16 )]
 position = Vector2( -14, 447 )
-dialogue = [ "...", "am I waiting for something?", "...", "..." ]
+dialogue = [ "...", "am I waiting for something?", "..." ]
+
+[node name="Sprite" parent="NPCs/NPC4" index="2"]
+modulate = Color( 0.454902, 1, 0.376471, 1 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 11 )]
 position = Vector2( 343, 430 )
@@ -185,7 +200,13 @@ position = Vector2( 1589, 394 )
 
 [node name="Torch" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1266, 407 )
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail3" method="_on_Lever_pulled"]
-[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
 [connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail4" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail2" method="_on_Lever_pulled"]
+[connection signal="pulled" from="Lever" to="ElectricRails/ElectricRail" method="_on_Lever_pulled"]
+
+[editable path="NPCs/NPC"]
+
+[editable path="NPCs/NPC2"]
+
+[editable path="NPCs/NPC4"]

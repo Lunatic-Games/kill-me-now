@@ -193,7 +193,7 @@ autoplay = "drive"
 anims/drive = SubResource( 2 )
 
 [node name="Dialogue" parent="." instance=ExtResource( 4 )]
-position = Vector2( 320, 336 )
+position = Vector2( 328, 312 )
 content = [ "Hey, Jerry...", "We've been married for 5 years...", "But there's something I never told you...", "I ..." ]
 
 [node name="Label" parent="Dialogue" index="0"]

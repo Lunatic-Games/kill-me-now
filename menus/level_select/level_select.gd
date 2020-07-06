@@ -21,6 +21,7 @@ func _ready():
 		new_button.text = str(i)
 		if !LevelsComplete.levels.has(str(i)):
 			new_button.disabled = true
+			new_button.focus_mode = Control.FOCUS_NONE
 		new_button.connect("pressed", self, "level_select", [str(i)])
 		$VBoxContainer/CenterContainer/GridContainer.add_child(new_button)
 

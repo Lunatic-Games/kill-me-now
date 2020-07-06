@@ -9,13 +9,13 @@
 [ext_resource path="res://levels/god_scene.gd" type="Script" id=7]
 [ext_resource path="res://music/Heaven Roads.wav" type="AudioStream" id=8]
 
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
+
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=3]
 0/name = "cloud_tiles.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -26,14 +26,14 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 2 )
+0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 2 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -47,17 +47,21 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape = SubResource( 3 )
+1/shape = SubResource( 2 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 24
@@ -75,12 +79,7 @@ font_data = ExtResource( 6 )
 size = 24
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 24
-font_data = ExtResource( 6 )
-
-[sub_resource type="Animation" id=4]
-resource_name = "scene"
+[sub_resource type="Animation" id=9]
 length = 32.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Person:position")
@@ -287,7 +286,7 @@ __meta__ = {
 }
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 1
 collision_layer = 3
@@ -318,7 +317,7 @@ position = Vector2( 792, 84 )
 content = [ "Welcome, little one", "You have made it into Heaven" ]
 
 [node name="Label" parent="GodDialogueP1" index="0"]
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 
 [node name="GodDialogueP2" parent="." instance=ExtResource( 5 )]
 visible = false
@@ -326,34 +325,35 @@ position = Vector2( 746, 83 )
 content = [ "Oh, her?", "She wasn't even close to making it in" ]
 
 [node name="Label" parent="GodDialogueP2" index="0"]
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 
 [node name="GodDialogueP3" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 744, 81 )
 content = [ "It happens more often than you would think" ]
 
 [node name="Label" parent="GodDialogueP3" index="0"]
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 
 [node name="PlayerDialogueP1" parent="." instance=ExtResource( 5 )]
 visible = false
-position = Vector2( 600, 443 )
+position = Vector2( 526, 449 )
 content = [ "Woo!", "Wait...", "Where's my wife?" ]
 
 [node name="Label" parent="PlayerDialogueP1" index="0"]
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 
 [node name="PlayerDialogueP2" parent="." instance=ExtResource( 5 )]
 visible = false
-position = Vector2( 600, 445 )
+position = Vector2( 526, 451 )
 content = [ "F*** this" ]
 
 [node name="Label" parent="PlayerDialogueP2" index="0"]
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "scene"
-anims/scene = SubResource( 4 )
+anims/scene = SubResource( 9 )
 
 [node name="Fade" type="ColorRect" parent="."]
 margin_left = -4.0
