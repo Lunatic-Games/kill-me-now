@@ -71,7 +71,7 @@ dialogue = [ "Those rails look dangerous", "I saw someone touch them...", "They 
 
 [node name="NPC" parent="NPCs" instance=ExtResource( 12 )]
 position = Vector2( 272, 448 )
-dialogue = [ "Oh, hey there", "You new here too?", "Well, best of luck to you friend" ]
+dialogue = [ "Oh, hey there, press \"e\" to interact with me", "You new here too?", "Well, best of luck to you friend" ]
 
 [node name="Sprite" parent="NPCs/NPC" index="2"]
 modulate = Color( 0.509804, 0.454902, 0.901961, 1 )
